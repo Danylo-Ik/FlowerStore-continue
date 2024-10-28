@@ -3,8 +3,8 @@ package ua.edu.ucu.apps.lab7;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
 
+import ua.edu.ucu.apps.lab7.delivery.DHLDeliveryStrategy;
 import ua.edu.ucu.apps.lab7.delivery.PostDeliveryStrategy;
 import ua.edu.ucu.apps.lab7.flower.Flower;
 import ua.edu.ucu.apps.lab7.flower.FlowerBucket;
@@ -34,7 +34,27 @@ public class DeliveryTest {
         item.setFlowerBucket(bucket);
         order.addItem(item);
 
-        assertEquals(order.getFinalPrice(), 110);
+        assertEquals(order.getFinalPrice(), 615);
 
+    }
+
+    @Test
+    public void DHLtest() {
+        Order order = new Order();
+        order.setPayment(new CreditCardPaymentStrategy());
+        order.setDelivery(new DHLDeliveryStrategy());
+
+        Item item = new Item();
+        Flower flower1 = new Flower();
+        flower1.setColor(FlowerColor.RED);
+        flower1.setSepalLength(5.0);
+        flower1.setFlowerType(FlowerType.ROSE);
+        flower1.setPrice(5);
+        FlowerBucket bucket = new FlowerBucket();
+        bucket.add(new FlowerPack(flower1, 101));
+        item.setFlowerBucket(bucket);
+        order.addItem(item);
+
+        assertEquals(order.getFinalPrice(), 525);
     }
 }

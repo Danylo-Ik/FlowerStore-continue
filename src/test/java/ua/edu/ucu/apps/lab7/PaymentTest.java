@@ -3,7 +3,6 @@ package ua.edu.ucu.apps.lab7;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
 
 import ua.edu.ucu.apps.lab7.delivery.PostDeliveryStrategy;
 import ua.edu.ucu.apps.lab7.flower.Flower;
